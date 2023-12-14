@@ -39,20 +39,25 @@ class Field {
       console.log('Game Over! You moved outside the field.');
       this.gameOver = true;
     }else if(this.myField[this.row][this.col] === 'H'){
-      console.log('Congratulations! You found the hat. You win!')
+      console.log('Congratulations! You found the hat. You win!');
       this.gameOver = true;
     }else if(this.myField[this.row][this.col] === 'O'){
-      console.log('Game Over! You fell into a hole.')
+      console.log('Game Over! You fell into a hole.');
       this.gameOver = true;
     }else {
       this.myField[this.row][this.col] = '*';
       this.print();
-      console.log('Where would you like to move? [u(up)/d(down)/l(left)/r(right)]')
+      console.log('Where would you like to move? { u(up) ,d(down) ,l(left) ,r(right)}');
     }
   }
 }
 
+const firstField = new Field ([
+    ['*', 'O', 'O' ,'O'],
+    ['O', 'H', 'O', 'O'],
+    ['*', 'O', 'O', 'O']
+]);
 
-const myFirstField = new Field(firstField);
+
 
 myFirstField.printField();
