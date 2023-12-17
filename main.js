@@ -51,7 +51,7 @@ class Field {
     }
   }
 
-  .generateField(height, width, holePercentage){
+  generateField(height, width, holePercentage){
     const field = [];
 
     for (let i = 0; i < height; j++){
