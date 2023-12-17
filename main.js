@@ -6,16 +6,20 @@ const fieldCharacter = '░';
 const pathCharacter = '*';
 
 class Field {
-  constructor(myField){
-    this.myField = myField;
+  constructor(height, width, holePercentage){
+    this.myField = this.generateField(height, width, holePercentage);
     this.row = 0;
     this.col = 0;
     this.gameOver = false;
   }
 
+  clearConsole(){
+    console.clear;
+  }
+
   print(){
-    for (let row of this.myField){
-      console.log(row.join(''));
+    for (let i = 0; i < this.myField.length; i++){
+      console.log(this.myField[i].join(' '));
     }
   }
     //takes a 'direction' and moves according to selection
@@ -54,10 +58,10 @@ class Field {
   generateField(height, width, holePercentage){
     const field = [];
 
-    for (let i = 0; i < height; j++){
+    for (let i = 0; i < height; i++){
       const row = [];
       for(let j= 0; j < width; j++){
-        row.push(Math.random() < holePercentage ? '0' : ' ');
+        row.push(Math.random() < holePercentage ? 'O' : fieldCharacter);
       }
       field.push(row)
     }
@@ -72,14 +76,19 @@ class Field {
 
     return field;
   }
+
+    play() {
+    while (!this.gameOver) {
+
+      this.clearConsole();
+      this.print();
+      
+      const direction = prompt('Where would you like to move? { u(up) ,d(down) ,l(left) ,r(right)} ');
+      this.movement(direction.trim().toLowerCase());
+    }
+  }
 }
 
-const firstField = new Field ([
-    ['*', 'O', 'O' ,'O'],
-    ['O', 'H', 'O', 'O'],
-    ['*', 'O', 'O', 'O']
-]);
 
-
-
-myFirstField.printField();
+const firstField = new Field(6,6, .25);
+firstField.play();
