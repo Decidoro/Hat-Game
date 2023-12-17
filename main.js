@@ -12,7 +12,7 @@ class Field {
     this.col = 0;
     this.gameOver = false;
   }
-
+  //this code tries to clear the console for a cleaner look (still working on it)
   clearConsole(){
     console.clear;
   }
@@ -76,7 +76,7 @@ class Field {
 
     return field;
   }
-
+    //This code gets the users feedback and responds according to input
     play() {
     while (!this.gameOver) {
 
@@ -90,5 +90,7 @@ class Field {
 }
 
 
-const firstField = new Field(6,6, .25);
+const firstField = new Field(6,6, .25);//Here a field is created specifing how many holes to put in the field
+
+
 firstField.play();
