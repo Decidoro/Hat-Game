@@ -50,6 +50,28 @@ class Field {
       console.log('Where would you like to move? { u(up) ,d(down) ,l(left) ,r(right)}');
     }
   }
+
+  .generateField(height, width, holePercentage){
+    const field = [];
+
+    for (let i = 0; i < height; j++){
+      const row = [];
+      for(let j= 0; j < width; j++){
+        row.push(Math.random() < holePercentage ? '0' : ' ');
+      }
+      field.push(row)
+    }
+
+    //Creates a random place in the field to place the 'H' (the hat)
+    const hatRow = Math.floor(Math.random() * height);
+    const hatCol = Math.floor(Math.random() * width);
+    field[hatRow][hatCol] = 'H';
+
+    //places 'player' at the start of the field to ensure it is not placed on a hole or hat
+    field[0][0] = ' ';
+
+    return field;
+  }
 }
 
 const firstField = new Field ([
