@@ -51,7 +51,7 @@ class Field {
     }else {
       this.myField[this.row][this.col] = '*';
       this.print();
-      console.log('Where would you like to move? { u(up) ,d(down) ,l(left) ,r(right)}');
+      console.log('Where would you like to move? [u(up) ,d(down) ,l(left) ,r(right)] *Press enter after each move*');
     }
   }
 
@@ -83,14 +83,14 @@ class Field {
       this.clearConsole();
       this.print();
       
-      const direction = prompt('Where would you like to move? { u(up) ,d(down) ,l(left) ,r(right)} ');
+      const direction = prompt('Where would you like to move? [u(up) ,d(down) ,l(left) ,r(right)] *Press enter after each move.* ');
       this.movement(direction.trim().toLowerCase());
     }
   }
 }
 
-
-const firstField = new Field(6,6, .25);//Here a field is created specifing how many holes to put in the field
+//Here a field is created specifing how many holes to put in the field
+const firstField = new Field(6,6, .25);
 
 
 firstField.play();
