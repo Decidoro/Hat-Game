@@ -6,16 +6,20 @@ const fieldCharacter = '░';
 const pathCharacter = '*';
 
 class Field {
-  constructor(myField){
-    this.myField = myField;
+  constructor(height, width, holePercentage){
+    this.myField = this.generateField(height, width, holePercentage);
     this.row = 0;
     this.col = 0;
     this.gameOver = false;
   }
+  //Tries to clear the console to try and work on the multiple output problem. Still working on it
+  clearConsole(){
+    console.clear;
+  }
 
   print(){
-    for (let row of this.myField){
-      console.log(row.join(''));
+    for (let i = 0; i < this.myField.length; i++){
+      console.log(this.myField[i].join(' '));
     }
   }
     //takes a 'direction' and moves according to selection
@@ -50,14 +54,41 @@ class Field {
       console.log('Where would you like to move? { u(up) ,d(down) ,l(left) ,r(right)}');
     }
   }
+    //Generates a field based on inputs
+  generateField(height, width, holePercentage){
+    const field = [];
+
+    for (let i = 0; i < height; i++){
+      const row = [];
+      for(let j= 0; j < width; j++){
+        row.push(Math.random() < holePercentage ? 'O' : fieldCharacter);
+      }
+      field.push(row)
+    }
+
+    //Creates a random place in the field to place the 'H' (the hat)
+    const hatRow = Math.floor(Math.random() * height);
+    const hatCol = Math.floor(Math.random() * width);
+    field[hatRow][hatCol] = 'H';
+
+    //places 'player' at the start of the field to ensure it is not placed on a hole or hat
+    field[0][0] = ' ';
+
+    return field;
+  }
+    //This method is used to start and pley the game
+    play() {
+    while (!this.gameOver) {
+
+      this.clearConsole();
+      this.print();
+      
+      const direction = prompt('Where would you like to move? [u(up) ,d(down) ,l(left) ,r(right)] (Press Enter after each play.) ');
+      this.movement(direction.trim().toLowerCase());
+    }
+  }
 }
 
-const firstField = new Field ([
-    ['*', 'O', 'O' ,'O'],
-    ['O', 'H', 'O', 'O'],
-    ['*', 'O', 'O', 'O']
-]);
 
-
-
-myFirstField.printField();
+const firstField = new Field(6,6, .25);
+firstField.play();
