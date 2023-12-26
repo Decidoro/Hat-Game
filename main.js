@@ -12,7 +12,7 @@ class Field {
     this.col = 0;
     this.gameOver = false;
   }
-  //Tries to clear the console to try and work on the multiple output problem. Still working on it
+  //this code tries to clear the console for a cleaner look (still working on it)
   clearConsole(){
     console.clear;
   }
@@ -54,7 +54,7 @@ class Field {
       console.log('Where would you like to move? { u(up) ,d(down) ,l(left) ,r(right)}');
     }
   }
-    //Generates a field based on inputs
+
   generateField(height, width, holePercentage){
     const field = [];
 
@@ -76,19 +76,21 @@ class Field {
 
     return field;
   }
-    //This method is used to start and pley the game
+    //This code gets the users feedback and responds according to input
     play() {
     while (!this.gameOver) {
 
       this.clearConsole();
       this.print();
       
-      const direction = prompt('Where would you like to move? [u(up) ,d(down) ,l(left) ,r(right)] (Press Enter after each play.) ');
+      const direction = prompt('Where would you like to move? { u(up) ,d(down) ,l(left) ,r(right)} ');
       this.movement(direction.trim().toLowerCase());
     }
   }
 }
 
 
-const firstField = new Field(6,6, .25);
+const firstField = new Field(6,6, .25);//Here a field is created specifing how many holes to put in the field
+
+
 firstField.play();
